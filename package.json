@@ -1,0 +1,32 @@
+{
+  "name": "fastify-web-response",
+  "version": "0.1.0",
+  "description": "enables returning Response and ReadableStream as a result value in fastify routes",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "type": "commonjs",
+  "engines": {
+    "node": ">= 18.0.0"
+  },
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erfanium/fastify-whatwg.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erfanium/fastify-whatwg/issues"
+  },
+  "homepage": "https://github.com/erfanium/fastify-whatwg#readme",
+  "dependencies": {
+    "fastify-plugin": "^4.0.0"
+  },
+  "devDependencies": {
+    "fastify": "^4.11.0",
+    "vite": "^4.0.4",
+    "vitest": "^0.28.2"
+  }
+}
