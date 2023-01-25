@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/erfanium/fastify-whatwg.git"
+    "url": "git+https://github.com/erfanium/fastify-web-response.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/erfanium/fastify-whatwg/issues"
+    "url": "https://github.com/erfanium/fastify-web-response/issues"
   },
-  "homepage": "https://github.com/erfanium/fastify-whatwg#readme",
+  "homepage": "https://github.com/erfanium/fastify-web-response#readme",
   "dependencies": {
     "fastify-plugin": "^4.0.0"
   },
