@@ -4,7 +4,7 @@ import { Readable } from "stream";
 const delay = (t) => new Promise((resolve) => setTimeout(resolve, t));
 async function* ResponseGenerator() {
   for (let i = 0; i < 10; i++) {
-    await delay(10);
+    await delay(1);
     yield i.toString();
   }
 }

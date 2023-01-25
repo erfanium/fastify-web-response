@@ -1,6 +1,6 @@
+"use strict";
 const { Readable } = require("node:stream");
 const fp = require("fastify-plugin");
-const { kReplySerializer } = require("fastify/lib/symbols");
 
 const noop = (v) => v;
 
@@ -18,7 +18,7 @@ function fastifyWebResponse(fastify, config, done) {
 
       if (payload.body) {
         // set a noop serialize. we don't want out response body to be serialized
-        reply[kReplySerializer] = noop;
+        reply.serializer(noop);
 
         const readable = Readable.fromWeb(payload.body);
         return done(null, readable);
@@ -29,7 +29,7 @@ function fastifyWebResponse(fastify, config, done) {
 
     if (payload && payload instanceof ReadableStream) {
       // set a noop serialize. we don't want out response body to be serialized
-      reply[kReplySerializer] = noop;
+      reply.serializer(noop);
 
       const readable = Readable.fromWeb(payload);
       return done(null, readable);
