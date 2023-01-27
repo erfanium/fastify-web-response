@@ -1,6 +1,7 @@
 # fastify-web-response
 
-enables returning `Response` and `ReadableStream` as a result value in fastify routes, so this code will be work:
+enables returning `Response` and `ReadableStream` as a result value in fastify routes.  
+so this code will be work:
 
 ```js
 import fastify from "fastify"
@@ -41,3 +42,6 @@ app.route({
 ```sh
 npm i fastify-web-response
 ```
+
+## Experimental
+`fetch` api is experimental. I'll release the v1.0.0 of this module when it's stable
