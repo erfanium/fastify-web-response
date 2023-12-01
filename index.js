@@ -11,7 +11,7 @@ const noop = (v) => v;
  * @param {*} done
  */
 function fastifyWebResponse(fastify, config, done) {
-  fastify.addHook("preSerialization", (req, reply, payload, done) => {
+  fastify.addHook("onSend", (req, reply, payload, done) => {
     if (payload && payload instanceof Response) {
       reply.status(payload.status);
       reply.headers(Object.fromEntries(payload.headers.entries()));
