@@ -11,31 +11,34 @@ const noop = (v) => v;
  * @param {*} done
  */
 function fastifyWebResponse(fastify, config, done) {
-  fastify.addHook("onSend", (req, reply, payload, done) => {
-    if (payload && payload instanceof Response) {
+  // forwards response status and readers when response is found as payload
+  // opts-out of serialization when a response or response body is found as payload
+  fastify.addHook("preSerialization", (req, reply, payload, done) => {
+    // if we've got a Response, we want to select the body
+    const body = payload instanceof Response
+      ? payload.body
+      : payload;
+
+    if (payload instanceof Response) {
       reply.status(payload.status);
       reply.headers(Object.fromEntries(payload.headers.entries()));
-
-      if (payload.body) {
-        // set a noop serialize. we don't want out response body to be serialized
-        reply.serializer(noop);
-
-        const readable = Readable.fromWeb(payload.body);
-        return done(null, readable);
-      }
-
-      return done(null, undefined);
     }
 
-    if (payload && payload instanceof ReadableStream) {
+    if (body instanceof ReadableStream) {
       // set a noop serialize. we don't want out response body to be serialized
       reply.serializer(noop);
-
-      const readable = Readable.fromWeb(payload);
-      return done(null, readable);
     }
 
-    return done(null, payload);
+    return done(null, body);
+  });
+
+  // converts a ReadableStream payload to a NodeJS Readable that Fastify can handle
+  fastify.addHook("onSend", (req, reply, payload, done) => {
+    const body = payload instanceof ReadableStream
+      ? Readable.fromWeb(payload)
+      : payload
+
+    return done(null, body);
   });
 
   done();
