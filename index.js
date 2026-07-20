@@ -45,7 +45,7 @@ function fastifyWebResponse(fastify, config, done) {
 }
 
 module.exports = fp(fastifyWebResponse, {
-  fastify: "4.x",
+  fastify: "5.x",
   name: "fastify-web-response",
 });
 module.exports.default = fastifyWebResponse;
